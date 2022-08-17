@@ -1,4 +1,3 @@
-import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
@@ -7,7 +6,26 @@ import Banner from "../components/Header/Banner";
 import axios from "axios";
 import request from "../utils/request";
 
-const Home: NextPage = () => {
+interface Props {
+  actionMovies: Movie[]
+  comedyMovies: Movie[]
+  documentary: Movie[]
+  horrorMovies: Movie[]
+  netflixOriginals: Movie[]
+  romanceMovies: Movie[]
+  topRatedMovies: Movie[]
+  tredingMovies: Movie[]
+}
+
+const Home = ({ actionMovies,
+  comedyMovies,
+  documentary,
+  horrorMovies,
+  netflixOriginals,
+  romanceMovies,
+  topRatedMovies,
+  tredingMovies, }: Props) => {
+  console.log(actionMovies);
   return (
     <div className="relative h-screen bg-gradient-to-b from from-gray-900/10 to-[#010511] lg:h-[140vh]">
       <Head>
@@ -21,7 +39,7 @@ const Home: NextPage = () => {
 
       <main>
         {/* Banner   */}
-        <Banner />
+        <Banner netflixOriginals={netflixOriginals} />
 
         <section>
           {/* Row */}
@@ -40,51 +58,36 @@ const Home: NextPage = () => {
 export default Home;
 
 export const getServerSideProps = async () => {
-  
-    const [
-      actionMovies,
-            comedyMovies,
-            documentary,
-            horrorMovies,
-            netflixOriginals,
-            romanceMovies,
-            topRatedMovies,
-            tredingMovies
-    ]=await axios
-      .all([
-        axios.get(request.fetchActionMovies),
-        axios.get(request.fetchComedyMovies),
-        axios.get(request.fetchDocumentaries),
-        axios.get(request.fetchHorrorMovies),
-        axios.get(request.fetchNetflixOriginals),
-        axios.get(request.fetchRomanceMovies),
-        axios.get(request.fetchTopRated),
-        axios.get(request.fetchTrending),
-      ])
-      // .then(
-      //   axios.spread(
-      //     (
-      //       actionMovies,
-      //       comedyMovies,
-      //       documentary,
-      //       horrorMovies,
-      //       netflixOriginals,
-      //       romanceMovies,
-      //       topRatedMovies,
-      //       tredingMovies
-      //     ) => {
-      //       console.log(actionMovies, comedyMovies);
-      //     }
-      //   )
-      // );
+  const [
+    actionMovies,
+    comedyMovies,
+    documentary,
+    horrorMovies,
+    netflixOriginals,
+    romanceMovies,
+    topRatedMovies,
+    tredingMovies,
+  ] = await Promise.all([
+    fetch(request.fetchNetflixOriginals).then((res) => res.json()),
+    fetch(request.fetchTrending).then((res) => res.json()),
+    fetch(request.fetchTopRated).then((res) => res.json()),
+    fetch(request.fetchActionMovies).then((res) => res.json()),
+    fetch(request.fetchComedyMovies).then((res) => res.json()),
+    fetch(request.fetchHorrorMovies).then((res) => res.json()),
+    fetch(request.fetchRomanceMovies).then((res) => res.json()),
+    fetch(request.fetchDocumentaries).then((res) => res.json()),
+  ]);
 
-  return{
-    props:{actionMovies
-      
-
-    }
-  }
-
-
-
+  return {
+    props: {
+      actionMovies:actionMovies.results,
+      comedyMovies:comedyMovies.results,
+      documentary:documentary.results,
+      horrorMovies:horrorMovies.results,
+      netflixOriginals:netflixOriginals.results,
+      romanceMovies:romanceMovies.results,
+      topRatedMovies:topRatedMovies.results,
+      tredingMovies:tredingMovies.results,
+    },
+  };
 };
