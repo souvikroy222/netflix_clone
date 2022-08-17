@@ -40,8 +40,17 @@ const Home: NextPage = () => {
 export default Home;
 
 export const getServerSideProps = async () => {
-  try {
-    axios
+  
+    const [
+      actionMovies,
+            comedyMovies,
+            documentary,
+            horrorMovies,
+            netflixOriginals,
+            romanceMovies,
+            topRatedMovies,
+            tredingMovies
+    ]=await axios
       .all([
         axios.get(request.fetchActionMovies),
         axios.get(request.fetchComedyMovies),
@@ -52,25 +61,30 @@ export const getServerSideProps = async () => {
         axios.get(request.fetchTopRated),
         axios.get(request.fetchTrending),
       ])
-      .then(
-        axios.spread(
-          (
-            actionMovies,
-            comedyMovies,
-            documentary,
-            horrorMovies,
-            netflixOriginals,
-            romanceMovies,
-            topRatedMovies,
-            tredingMovies
-          ) => {
-            console.log(actionMovies, comedyMovies);
-          }
-        )
-      );
-  } catch (error) {
-    console.log("an error occured",error);
-    throw new Error("failed to fetch data");
-    
+      // .then(
+      //   axios.spread(
+      //     (
+      //       actionMovies,
+      //       comedyMovies,
+      //       documentary,
+      //       horrorMovies,
+      //       netflixOriginals,
+      //       romanceMovies,
+      //       topRatedMovies,
+      //       tredingMovies
+      //     ) => {
+      //       console.log(actionMovies, comedyMovies);
+      //     }
+      //   )
+      // );
+
+  return{
+    props:{actionMovies
+      
+
+    }
   }
+
+
+
 };
