@@ -5,6 +5,8 @@ import Header from "../components/Header/Header";
 import Banner from "../components/Header/Banner";
 import axios from "axios";
 import request from "../utils/request";
+import ChannelSlider from '../components/Header/ChannelSlider'
+
 
 interface Props {
   actionMovies: Movie[]
@@ -42,6 +44,7 @@ const Home = ({ actionMovies,
         <Banner netflixOriginals={netflixOriginals} />
 
         <section>
+          <ChannelSlider/>
           {/* Row */}
           {/* Row */}
           {/* Row */}
