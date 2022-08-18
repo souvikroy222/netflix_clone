@@ -6,7 +6,7 @@ function ChannelSlider() {
       <Feather_div>
         <Wrap>
           <img src="/images/disnep_img.webp" />
-          <video autoPlay={true} loop={true} playsInline={true}>
+          <video autoPlay playsInline loop muted>
             <source src="./images/disnep.mp4" type="video/mp4" />
           </video>
         </Wrap>
@@ -15,7 +15,7 @@ function ChannelSlider() {
 
       <Wrap>
         <img src="/images/marvel_img.webp" />
-        <video autoPlay={true} loop={true} playsInline={true}>
+        <video autoPlay playsInline loop muted>
           <source type="video/mp4" src="./images/marvel.mp4" />
         </video>
       </Wrap>
@@ -23,7 +23,7 @@ function ChannelSlider() {
       <Feather_div>
       <Wrap>
         <img src="/images/natgeo_img.webp" />
-        <video autoPlay={true} loop={true} playsInline={true}>
+        <video autoPlay playsInline loop muted>
           <source src="./images/natgeo.mp4" type="video/mp4" />
         </video>
       </Wrap>
@@ -31,7 +31,7 @@ function ChannelSlider() {
       <Feather_div>
       <Wrap>
         <img src="/images/pixar_img.webp" />
-        <video autoPlay={true} loop={true} playsInline={true}>
+        <video autoPlay playsInline loop muted>
           <source src="./images/pixar.mp4" type="video/mp4" />
         </video>
       </Wrap>
@@ -39,7 +39,7 @@ function ChannelSlider() {
       <Feather_div>
       <Wrap>
         <img src="/images/starwars_img.webp" />
-        <video autoPlay={true} loop={true} playsInline={true}>
+        <video autoPlay playsInline loop muted>
           <source src="./images/starwars.mp4" type="video/mp4" />
         </video>
       </Wrap>
@@ -53,6 +53,7 @@ const Container = styled.div`
   padding-top: 3rem;
   grid-template-columns: repeat(5, 1fr);
   column-gap: 1rem;
+  row-gap: 1rem;
   justify-content: center;
   align-items: center;
 

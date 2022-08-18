@@ -17,16 +17,20 @@ function Banner({ netflixOriginals }: Props) {
   }, [netflixOriginals]);
   console.log(`${baseURL}/random`);
 
-  const customClassName = `top-0 left-0 -z-10 absolute h-[80vh] w-[100%] ${styles.bg_image}`;
+  const customClassName = `top-0 left-0 -z-10 absolute h-[75vh] w-[100%] ${styles.bg_image}`;
 
   return (
     <div className="flex space-x-6 flex-col space-y-2 md:space-y-4 lg:h-[65vvh] lg:justify-end ">
       <div className={customClassName}>
-        <Image
+      <video className="absolute top-0 left-0 w-[100%] h-[100%] object-cover" autoPlay playsInline loop muted>
+          <source src="./images/Avengers_ Endgame  _ Official Trailer _ Hindi _ In Cinemas April 26.mp4" type="video/mp4" />
+        </video>
+      
+        {/* <Image
           src={`${baseURL}${random?.backdrop_path || random?.poster_path}`}
           layout="fill"
           objectFit="cover"
-        />
+        /> */}
       </div>
       <div className="absolute left-5 top-40">
         <h1 className="text-2xl md:text-4xl lg:text-7xl font-bold w-[50%]">
