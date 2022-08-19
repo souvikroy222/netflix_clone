@@ -6,6 +6,8 @@ import Banner from "../components/Header/Banner";
 import axios from "axios";
 import request from "../utils/request";
 import ChannelSlider from '../components/Header/ChannelSlider'
+import NetflixCarousel from "../components/netflix/NetflixCarousel";
+
 
 
 interface Props {
@@ -45,6 +47,7 @@ const Home = ({ actionMovies,
 
         <section>
           <ChannelSlider/>
+          <NetflixCarousel/>
           {/* Row */}
           {/* Row */}
           {/* Row */}
